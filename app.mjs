@@ -134,6 +134,19 @@ result=async function(pts,elapsed,clear,reason){
  __gbHooks.onEnd(f);
 };
 
+// iPhone / Safari: sound may only start inside a tap, and Safari (unlike Chrome) does not count an earlier tap.
+// On their own site begin() runs inside the PLAY tap; here the shell calls it after a server call, so on an iPhone
+// their music's play() is refused and their AudioContext stays suspended (their audio() then waits on resume()
+// and never decodes their effects). Without their music playing, older iPhones also put Web Audio (their effects,
+// the GameBull countdown ticks) under the silent switch. So on the player's taps during a run, start them exactly
+// as their own code does: their audio() (resume + decode) and their music, if their sound is on.
+function __gbAudioTap(){
+ if(muted||mode!=='playing'||ending)return;
+ if(!ctx||ctx.state!=='running'||!decoded['card-paper'])audio().catch(()=>{});
+ if(bgm&&bgm.paused)bgm.play().then(()=>console.log('[KL-GB] Client music started on a tap (Safari: no autoplay outside a tap).')).catch(()=>{});
+}
+for(const t of ['touchend','pointerup','click','keydown'])document.addEventListener(t,__gbAudioTap,{capture:true,passive:true});
+
 window.KLClient={
  hooks:__gbHooks,
  // Under the lobby: their TOP state without the cover (music off, no clock).
