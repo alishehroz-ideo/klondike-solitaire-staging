@@ -63,6 +63,10 @@ let __gbLastScore=0;
 
 // A run shorter than the client's 300 s starts with the difference already used, so their own clock, timer bar,
 // time bonus (remaining whole seconds x 10) and replay check need no change.
+// GameBull: sound ON until the player chooses (their own default is OFF: muted unless "luxe-muted" is 'false').
+// Once the player taps their sound button (or the GameBull mute), their own code saves the choice and it is kept.
+try{if(localStorage.getItem('luxe-muted')===null){muted=false;soundUI();console.log('[KL-GB] Sound ON by default (no saved choice yet).')}}catch{}
+
 const __gbOffsetMs=()=>Math.max(0,duration(type)*1000-__gbRunMs);
 const __gbLive=()=>mode==='playing'&&!ending&&!__gbHeld&&!__gbLocked;
 
