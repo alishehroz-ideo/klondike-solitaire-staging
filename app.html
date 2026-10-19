@@ -1,19 +1,19 @@
 <!doctype html>
 <!-- The game itself: the client's own page (dist/index.html: their markup, stylesheet and app.mjs, copied in at
      build time by vite.gamebull.config.ts, unchanged; app.mjs carries gamebull/client-hooks.mjs), then the
-     GameBull shell. Loaded by index.html inside the 540x960 frame (their page is a portrait column, 430 px max). -->
+     GameBull shell. Loaded by index.html in a frame filling the page (their responsive layout fits the board). -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Klondike Solitaire | スコアチャレンジ</title>
-<meta name="theme-color" content="#071d19"><link rel="preload" as="image" href="assets/hearts-sheet.png"><link rel="preload" as="image" href="assets/diamonds-sheet.png"><link rel="preload" as="image" href="assets/clubs-sheet.png"><link rel="preload" as="image" href="assets/spades-sheet.png"><link rel="stylesheet" href="style.css">
-  <script type="module" crossorigin src="./gb/app-Bzn9a-Fc.js"></script>
+<meta name="theme-color" content="#071d19"><link rel="preload" as="image" href="assets/hearts-sheet.png"><link rel="preload" as="image" href="assets/diamonds-sheet.png"><link rel="preload" as="image" href="assets/clubs-sheet.png"><link rel="preload" as="image" href="assets/spades-sheet.png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="responsive.css">
+  <script type="module" crossorigin src="./gb/app-B1c7PJ-a.js"></script>
   <link rel="modulepreload" crossorigin href="./gb/nozoom-CKR7c7sA.js">
   <link rel="stylesheet" crossorigin href="./gb/app-BS51DmcG.css">
 </head>
 <body data-theme="klondike">
 <div class="grain"></div><div class="ambient"><i></i><i></i><i></i></div><header><a class="brand" href="#">♠ <span>SOLITAIRE <small>THE LUXE COLLECTION</small></span></a><button id="sound" class="iconbutton" aria-label="音をオンにする">♪<span>OFF</span></button></header><main id="app"></main><dialog id="help"><button class="close" id="closeHelp" aria-label="閉じる">×</button><div class="eyebrow">HOW TO PLAY</div><h2>遊び方</h2><div id="helpBody"></div></dialog><div id="toast" role="status"></div><script type="module" src="app.mjs"></script>
-<div id="gb-root"></div>
+<div id="gb-root"></div>
 </body>
 </html>
